@@ -1,0 +1,3 @@
+temperature: Weather
+temp: Weather
+weather: Weather
