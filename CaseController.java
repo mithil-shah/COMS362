@@ -16,7 +16,8 @@ public class CaseController
 
         while ((line = reader.readLine()) != null)
         {
-            keywordsMap.put(line.split(": ")[0], line.split(": ")[1]);
+            String [] keyValuePair = line.split(": ");
+            keywordsMap.put(keyValuePair[0], keyValuePair[1]);
         }
 
         for (String feature : keywordsMap.keySet())

@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import com.google.gson.*;
 
 public class Weather extends Feature
 {
@@ -61,7 +62,24 @@ public class Weather extends Feature
 
     private String parseWeatherResponseData(String response)
     {
-        return response;
+        JsonParser parser = new JsonParser();
+        JsonElement tree = parser.parse(response);
+
+        if(tree.isJsonObject())
+        {
+            JsonObject object = tree.getAsJsonObject();
+            JsonElement currently = object.get("currently");
+
+            if(currently.isJsonObject())
+            {
+                JsonObject currentlyObject = currently.getAsJsonObject();
+                JsonElement summary = currentlyObject.get("summary");
+                JsonElement tempF = currentlyObject.get("temperature");
+                return summary.getAsString() + ": " + tempF.getAsInt() + "°F";
+            }
+        }
+
+        return "Error fetching weather";
     }
 
     public String setResponse()
@@ -72,7 +90,7 @@ public class Weather extends Feature
         }
         catch (IOException e)
         {
-            return "Error - Weather";
+            return "Error parsing weather";
         }
     }
 }
