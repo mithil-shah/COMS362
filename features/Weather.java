@@ -15,15 +15,65 @@ public class Weather extends Feature
     public Weather(String query)
     {
         super(query);
-        parseQuery();
+        parseQuery(query);
     }
 
-    void parseQuery()
+    void parseQuery(String query)
     {
-        //TODO
+        String [] nonKeywords = {"where", "is", "of", "temp", "weather", "at", "in", "city", "location", "the"};
 
-        double longitude = -122.4233;
-        double latitude = 37.8267;
+        for(String word: query.split(" "))
+        {
+            boolean isNotCity = false;
+
+            for(String nonKeyword: nonKeywords)
+            {
+                if(word.toLowerCase().equals(nonKeyword))
+                {
+                    isNotCity = true;
+                    break;
+                }
+            }
+
+            if(!isNotCity)
+            {
+                try
+                {
+                    URL urlw = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+                    HttpURLConnection connection =  (HttpURLConnection) urlw.openConnection();
+                    connection.setRequestMethod("GET");
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String input;
+
+                    while((input = br.readLine()) != null)
+                    {
+                        sb.append(input);
+                    }
+
+                    br.close();
+
+                    parseLocation(sb.toString());
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    void parseLocation(String locationData)
+    {
+        JsonParser parser = new JsonParser();
+        JsonObject data = parser.parse(locationData).getAsJsonObject();
+        JsonArray results = data.getAsJsonArray("results");
+        JsonElement firstInstance = results.get(0);
+        JsonElement geometry = firstInstance.getAsJsonObject().get("geometry");
+        JsonElement location = geometry.getAsJsonObject().get("location");
+
+        double latitude = location.getAsJsonObject().get("lat").getAsDouble();
+        double longitude = location.getAsJsonObject().get("lng").getAsDouble();
 
         try
         {

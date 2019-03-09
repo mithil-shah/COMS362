@@ -10,5 +10,5 @@ public abstract class Feature
     }
 
     abstract String setResponse();
-    abstract void parseQuery();
+    abstract void parseQuery(String query);
 }
