@@ -1,4 +1,4 @@
 temperature: Weather
 temp: Weather
 weather: Weather
-search Image: GoogleImageSearch
+search image: GoogleImageSearch
