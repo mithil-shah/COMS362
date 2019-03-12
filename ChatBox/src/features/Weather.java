@@ -21,7 +21,8 @@ public class Weather extends Feature
     void parseQuery(String query)
     {
         String [] nonKeywords = {"where", "is", "of", "temp", "weather", "at", "in", "city", "location", "the"};
-
+        int indexOfCity = -1;
+        
         for(String word: query.split(" "))
         {
             boolean isNotCity = false;
