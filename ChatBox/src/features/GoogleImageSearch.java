@@ -1,7 +1,5 @@
-/**
- * @author Shreya Shankar
- */
 package features;
+
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,6 +9,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * 
+ * @author saishreyashankar
+ *
+ */
 public class GoogleImageSearch extends Feature
 {   String toSearch = "";
 	public static final String GOOGLE_SEARCH_URL = "https://www.google.com/search";
@@ -23,28 +26,9 @@ public class GoogleImageSearch extends Feature
 		 * public value to be used in the response method. 
 		*/
 		super(query);
+		parseQuery(query);
 	
-		query= query.replaceAll("\\s+", "");
-		String toInt="";
-		int toStopSubstring = query.length();
 		
-		
-	    for(int i= 0; i<query.length(); i++) {
-	    	if(query.charAt(i)==',') {
-	    
-	    		toInt=query.substring(i+1,query.length());
-	    		
-	    		toStopSubstring=i;
-	    	}
-	    }
-		
-		toSearch=query.substring(0,toStopSubstring);
-		if(toInt.length()==0) {
-			numLinksToReturn= 3;
-		}
-		else {
-			numLinksToReturn= Integer.parseInt(toInt);
-		}
 		
 	}
 
@@ -76,7 +60,27 @@ public class GoogleImageSearch extends Feature
 	@Override
 	void parseQuery(String query) 
 	{
-		// TODO Auto-generated method stub
+		query= query.replaceAll("\\s+", "");
+		String toInt="";
+		int toStopSubstring = query.length();
+		
+		
+	    for(int i= 0; i<query.length(); i++) {
+	    	if(query.charAt(i)==',') {
+	    
+	    		toInt=query.substring(i+1,query.length());
+	    		
+	    		toStopSubstring=i;
+	    	}
+	    }
+		
+		toSearch=query.substring(0,toStopSubstring);
+		if(toInt.length()==0) {
+			numLinksToReturn= 3;
+		}
+		else {
+			numLinksToReturn= Integer.parseInt(toInt);
+		}
 		
 	}
 
