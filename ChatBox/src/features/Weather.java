@@ -21,9 +21,10 @@ public class Weather extends Feature
     void parseQuery(String query)
     {
         String [] nonKeywords = {"where", "is", "of", "temp", "weather", "at", "in", "city", "location", "the"};
-        int indexOfCity = -1;
+        String [] words = query.split(" ");
+        int indexOfCity = 0;
         
-        for(String word: query.split(" "))
+        for(String word: words)
         {
             boolean isNotCity = false;
 
@@ -32,21 +33,35 @@ public class Weather extends Feature
                 if(word.toLowerCase().equals(nonKeyword))
                 {
                     isNotCity = true;
+                    indexOfCity++;
                     break;
                 }
             }
 
             if(!isNotCity)
             {
+            	String stateAbbr = "";
+            	
                 if(word.contains(","))
                 {
-                    word = word.substring(0, word.length()-1);
-                    System.out.println(word + " " );
+                	System.out.println(word);
+                    //word = word.substring(0, word.length()-1);
+                    stateAbbr = words[indexOfCity+1];
                 }
 
                 try
                 {
-                    URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+                	URL url = null;
+                	
+                	if(stateAbbr != "")
+                	{
+                		url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "+" + stateAbbr + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+                	}
+                	else
+                	{
+                		url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+                	}
+                	
                     HttpURLConnection connection =  (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     StringBuilder sb = new StringBuilder();
