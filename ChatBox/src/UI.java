@@ -1,3 +1,6 @@
+/**
+ * @author Mithil Shah & Shreya Shankar
+ */
 import java.util.Scanner;
 
 public class UI

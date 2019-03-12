@@ -1,3 +1,6 @@
+/**
+ * @author Mithil Shah
+ */
 package features;
 
 public abstract class Feature
