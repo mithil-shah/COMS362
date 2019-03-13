@@ -12,6 +12,6 @@ public abstract class Feature
         this.query = query;
     }
 
-    abstract String setResponse();
-    abstract void parseQuery(String query);
+    abstract public String setResponse();
+    abstract protected void parseQuery(String query);
 }

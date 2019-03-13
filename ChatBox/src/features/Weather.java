@@ -23,7 +23,7 @@ public class Weather extends Feature
         parseQuery(query);
     }
 
-    void parseQuery(String query)
+    protected void parseQuery(String query)
     {
         String [] nonKeywords = {"where", "is", "of", "temp", "weather", "at", "in", "city", "location", "the"};
         String [] words = query.split(" ");

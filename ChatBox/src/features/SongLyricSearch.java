@@ -35,7 +35,7 @@ public class SongLyricSearch extends Feature {
 	}
 
 	@Override
-	String setResponse() {
+	public String setResponse() {
 		String toReturn= "";
 		List<String> lyrics= new ArrayList<>();
 		try {
@@ -52,7 +52,7 @@ public class SongLyricSearch extends Feature {
 	}
 
 	@Override
-	void parseQuery(String query) {
+	protected void parseQuery(String query) {
 		query= query.replaceAll("\\s+", "");
 		int toStopSubstring = query.length();
 		

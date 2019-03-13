@@ -58,7 +58,7 @@ public class GoogleImageSearch extends Feature
 	}
 
 	@Override
-	void parseQuery(String query) 
+	protected void parseQuery(String query) 
 	{
 		query= query.replaceAll("\\s+", "");
 		String toInt="";
