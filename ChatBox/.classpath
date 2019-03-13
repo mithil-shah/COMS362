@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/saishreyashankar/git/COMS362/ChatBox/src/jsoup-1.10.2.jar"/>
-	<classpathentry kind="lib" path="/Users/saishreyashankar/git/COMS362/ChatBox/src/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="/Users/mithilshah/git/COMS362/ChatBox/src/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="/Users/mithilshah/git/COMS362/ChatBox/src/gson-2.8.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
