@@ -16,6 +16,7 @@ import com.google.gson.*;
 public class Weather extends Feature
 {
     private URL url;
+    private String foundLocation;
 
     public Weather(String query)
     {
@@ -25,69 +26,50 @@ public class Weather extends Feature
 
     protected void parseQuery(String query)
     {
-        String [] nonKeywords = {"where", "is", "of", "temp", "weather", "at", "in", "city", "location", "the"};
+        String nonKeywords = "where" + "is" + "of" + "temp" + "weather" + "at" + "in" + "city" + "location" + "the" + "what" + "get" + "fetch";
         String [] words = query.split(" ");
-        int indexOfCity = 0;
         
-        for(String word: words)
+        String location = "";
+        
+        for(int i = 0; i < words.length; i++)
         {
-            boolean isNotCity = false;
-
-            for(String nonKeyword: nonKeywords)
-            {
-                if(word.toLowerCase().equals(nonKeyword))
-                {
-                    isNotCity = true;
-                    indexOfCity++;
-                    break;
-                }
-            }
-
-            if(!isNotCity)
-            {
-            	String stateAbbr = "";
-            	
-                if(word.contains(","))
-                {
-                	System.out.println(word);
-                    //word = word.substring(0, word.length()-1);
-                    stateAbbr = words[indexOfCity+1];
-                }
-
-                try
-                {
-                	URL url = null;
-                	
-                	if(stateAbbr != "")
-                	{
-                		url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "+" + stateAbbr + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
-                	}
-                	else
-                	{
-                		url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + word + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
-                	}
-                	
-                    HttpURLConnection connection =  (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    StringBuilder sb = new StringBuilder();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String input;
-
-                    while((input = br.readLine()) != null)
-                    {
-                        sb.append(input);
-                    }
-
-                    br.close();
-
-                    parseLocation(sb.toString());
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
+        	if(!nonKeywords.contains(words[i]))
+        	{
+        		location += words[i] + "+";
+        	}
         }
+
+		try 
+		{
+			if(!location.equals(""))
+			{
+				url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+			}
+			else
+			{
+				url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,%20+Mountain+View,+CA&key=AIzaSyAwDcz884IY6ztK2-Ifrtjyj-3jc_T3xzw");
+			}
+			
+			HttpURLConnection connection =  (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String input;
+
+            while((input = br.readLine()) != null)
+            {
+                sb.append(input);
+            }
+
+            br.close();
+
+            parseLocation(sb.toString());
+		} 
+		catch (IOException e) 
+		{
+
+		}
+        
     }
 
     void parseLocation(String locationData)
@@ -96,6 +78,10 @@ public class Weather extends Feature
         JsonObject data = parser.parse(locationData).getAsJsonObject();
         JsonArray results = data.getAsJsonArray("results");
         JsonElement firstInstance = results.get(0);
+        
+        JsonArray addressComponent = firstInstance.getAsJsonObject().get("address_components").getAsJsonArray();
+        foundLocation = addressComponent.get(0).getAsJsonObject().get("long_name").getAsString();
+        
         JsonElement geometry = firstInstance.getAsJsonObject().get("geometry");
         JsonElement location = geometry.getAsJsonObject().get("location");
 
@@ -163,7 +149,7 @@ public class Weather extends Feature
     {
         try
         {
-            return parseWeatherResponseData(getForecast());
+            return parseWeatherResponseData(getForecast()) + " @ " + foundLocation;
         }
         catch (IOException e)
         {
