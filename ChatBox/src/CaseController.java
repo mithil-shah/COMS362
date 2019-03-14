@@ -34,6 +34,8 @@ public class CaseController
                 response = (String) method.invoke(object);
             }
         }
+        
+        reader.close();
     }
 
     public String getResponse()
