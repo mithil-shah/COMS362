@@ -15,6 +15,8 @@ public class UI
         	System.out.println("        Example: what is the temp in Ames");
         	System.out.println("    -To ask search for pictures Type: search image \"what you want to search\", \\\"number of images\\\"");
 			System.out.println("        Example: search image dogs, 5; this will return 5 different pictures of dogs");
+			System.out.println("    -To convert currency Type: convert \"amount,original currency,intended currency\" with spaces inbetween");
+			System.out.println("        Example: convert 10 USD to GBR; this will return the conversion of 10USD to GBR");
             String query = scan.nextLine();
 
             if(query.toLowerCase().contains("bye"))
