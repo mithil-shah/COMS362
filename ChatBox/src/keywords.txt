@@ -2,5 +2,6 @@ temperature: Weather
 temp: Weather
 weather: Weather
 search image: GoogleImageSearch
-get lyrics: SongLyricSearch
+lyrics: SongLyrics
 top hits: TopHitsSpotify
+top songs: TopHitsSpotify
