@@ -1,3 +1,6 @@
+/**
+ * @author Bernard Ang
+ */
 package features;
 
 import java.io.IOException;
@@ -6,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.google.gson.JsonElement;
@@ -28,14 +32,41 @@ public class ConverCurrency extends Feature {
 //		String nonKeywords = "find" + "song" + "lyrics" + "the" + "to" + "get" + "for";
 		String[] words = query.split(" ");
 		 curr1 = words[2];
+		 curr1 = curr1.toUpperCase();
 		 curr2 = words[4];
+		 curr2 = curr2.toUpperCase();
 		 money = Integer.parseInt(words[1]);
 		
 	}
-	
+	public static boolean useList(String[] arr, String targetValue) {
+		return Arrays.asList(arr).contains(targetValue);
+	}
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    long factor = (long) Math.pow(10, places);
+	    value = value * factor;
+	    long tmp = Math.round(value);
+	    return (double) tmp / factor;
+	}
 	@Override
 	public String setResponse()
 	{
+		String toReturn= "";
+		String [] code = {"AED","ALL","AMD","ANG","AOA","ARS","AUD","AZN","BBD","BDT","BGN","BHD","BRL","BSD","BWP","BYN","CAD","CHF","CLP","CNY",
+				"COP","CZK","DKK","DOP","DZD","EGP","ETB","EUR","FJD","GBP","GEL","GHS","GNF","GTQ","HKD","HNL","HRK","HUF","IDR","ILS",
+				"INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KHR","KRW","KWD","KZT","LAK","LBP","LKR","MAD","MDL","MKD","MMK","MUR",
+				"MXN","MYR","NAD","NGN","NOK","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","SAR","SCR",
+				"SEK","SGD","THB","TJS","TND","TRY","TTD","TWD","TZS","UAH","USD","UYU","UZS","VEF","VND","XAF","XCD","XOF","XPF","ZAR","ZMW"};
+		if(!useList(code,curr1)) {
+			toReturn = toReturn + "Invalid first currency";
+			return toReturn;
+		}
+		if(!useList(code,curr2)) {
+			toReturn = toReturn + "Invalid second currency";
+			return toReturn;
+		}
+
 		// Setting URL
 				String url_str = "https://v3.exchangerate-api.com/pair/0740a52e087ae0a03ac5bcd5/"+curr1 +"/" +curr2;
 
@@ -73,9 +104,8 @@ public class ConverCurrency extends Feature {
 				// Accessing object
 				String rate = jsonobj.get("rate").getAsString();
 				double result = Double.parseDouble(rate);			
-				double convert = result*money ;
+				double convert = round(result*money,2) ;
 				String finalCurr = Double.toString(convert);
-				String toReturn= "";
 				toReturn = toReturn + "Conversion from "+ money + " " +curr1 + " to " +curr2 +":" +finalCurr;
 				return toReturn;
 	}
