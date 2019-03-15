@@ -21,6 +21,9 @@ public class UI
 //			System.out.println("        Example: flip coin 10 times; this will return a heads/tail for 10 times");
 			System.out.println("    -To get stocks info Type: get stocks info for \"stock symbol\"");
 			System.out.println("        Example: get stocks info for MSFT; returns stock details for MSFT");
+			System.out.println("    -To get my to-do list \"to-do\"");
+			System.out.println("        Example: to-do");
+
             String query = scan.nextLine();
 
             if(query.toLowerCase().contains("bye"))
