@@ -11,24 +11,42 @@ import org.jsoup.select.Elements;
 
 /**
  * 
- * @author saishreyashankar
+ * @author Shreya Shankar
  *
  */
 public class GoogleImageSearch extends Feature
-{   String toSearch = "";
+{   
+	/**
+	 * The string that needs to be searched for on Google
+	 */
+	String toSearch = "";
+	/**
+	 * Base URL of google
+	 */
 	public static final String GOOGLE_SEARCH_URL = "https://www.google.com/search";
+	/**
+	 * Number of links to return, specified by the user
+	 */
 	int numLinksToReturn=0;
 
+	/**This will get the query which is what the user wants to search and the number of top 
+	 * results that the user wants returned and then assign each of them to the corresponding
+	 * public value to be used in the response method. 
+	 * 
+	 * @param query
+	 * 		The query provided by the user.
+	*/
 	public GoogleImageSearch(String query)
 	{
-		/*This will get the query which is what the user wants to search and the number of top 
-		 * results that the user wants returned and then assign each of them to the corresponding
-		 * public value to be used in the response method. 
-		*/
 		super(query);
 		parseQuery(query);
 	}
 
+	/**
+	 * Response given to the user in list format of URLs. Might actually display photos in second iteration.
+	 * @return toReturn;
+	 * 		List of search result URLs given from Google Search
+	 */
 	@Override
 	public String setResponse()
 	{ //gets the google search URL using the query and number from constructor.
@@ -54,6 +72,13 @@ public class GoogleImageSearch extends Feature
 		return toReturn;
 	}
 
+	/**
+	 * Parses the query to find the number of results and the search terms within the user's query.
+	 * @param query
+	 * 		The query provided by the user
+	 * @return
+	 * 		The search results found on Google from the search terms provided
+	 */
 	@Override
 	protected void parseQuery(String query) 
 	{
