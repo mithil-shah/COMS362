@@ -1,18 +1,27 @@
-
 /**
- * @author Fadel Alshammasi
+ * 
+ * A Java class that creates a to-do list with 3 use cases :a) Display all items in the list
+ * 													     b)Add an item
+ * 														 c)Clear the list from all items
+ * 
+ * @author fadelalshammasi
+ *
  */
-
 package features;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class ToDoList extends Feature  {
 	
-	int num;
-
 	
+	/**
+	 * A constructor that calls its super constructor then give all of the 3(4 with exiting)options
+	 *  so we can use it in our main program in the chat box by parsing the key words "to-do"
+	 * @param query
+	 */
 	public ToDoList(String query)
 	{
 		super(query);
@@ -34,7 +43,7 @@ public class ToDoList extends Feature  {
 			case 4:
 				break;
 		}
-		}
+	}
 				
 		parseQuery(query);
 	}
@@ -42,6 +51,10 @@ public class ToDoList extends Feature  {
 	
 	
 	@Override
+	
+	/**
+	 * Showing the final Response after being done with to-do list
+	 */
 	public String setResponse() {
 		return "Bye! Done with to-do list!";
 		
@@ -49,12 +62,19 @@ public class ToDoList extends Feature  {
 	}
 
 	@Override
+	
+	/**
+	 * It's not needed since we didn't use it with respect to my to-do list
+	 */
 	protected void parseQuery(String query) 
 	{
 		
 	}
 	
-
+	/**
+	 * A method to display all of the tasks that the user can choose from 
+	 * @return the choice that the user entered
+	 */
 	private static int options() {
 			
 			Scanner scan=new Scanner(System.in);
@@ -66,11 +86,13 @@ public class ToDoList extends Feature  {
 			System.out.println();
 			System.out.print("Please select an option: ");
 			int option= scan.nextInt();
-			//scan.close();
 			
 			return option;
 		}
-		
+	
+	/**
+	 * A method to display the current items/tasks in the list with their numbers from 1 to n each in new line
+	 */
 	private static void displayList() {
 			
 			System.out.println("\n My ToDo list:\n");
@@ -87,13 +109,17 @@ public class ToDoList extends Feature  {
 					
 				}
 			System.out.println();
-			//scan.close();
 			}
 			catch (Exception ex) {
 				System.out.println("can't read file");
 			}
 	
 		}
+	
+	/**
+	 * A method to add an item/task into the list (one element at a time) by reading what the user has typed in into the consle
+	 * 
+	 */
 		private static  void addItem() {
 			try {
 				FileWriter fw=new FileWriter("src/todo.txt",true);
@@ -103,7 +129,6 @@ public class ToDoList extends Feature  {
 				String str=scan.nextLine();
 				pw.println(str);
 				pw.close();
-				//scan.close();
 
 			}
 			catch (Exception ex) {
@@ -112,7 +137,13 @@ public class ToDoList extends Feature  {
 			
 			
 		}	
-		
+	
+		/**
+		 * a method that: 
+		 *     a) Display the current items/tasks
+		 *     b)delete all the items/tasks in the list so the list is empty
+		 *    
+		 */
 		private static void clearList() {
 			displayList();
 			ArrayList<String> items=new ArrayList<String>();
