@@ -1,8 +1,8 @@
 /**
  * 
  * A Java class that creates a to-do list with 3 use cases :a) Display all items in the list
- * 													     b)Add an item
- * 														 c)Clear the list from all items
+ * 											     b)Add an item
+ * 												 c)Clear the list from all items
  * 
  * @author fadelalshammasi
  *
