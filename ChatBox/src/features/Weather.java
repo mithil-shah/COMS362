@@ -39,7 +39,7 @@ public class Weather extends Feature
         	}
         }
 
-		try 
+		try
 		{
 			if(!location.equals(""))
 			{
