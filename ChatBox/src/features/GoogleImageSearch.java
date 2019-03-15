@@ -27,9 +27,6 @@ public class GoogleImageSearch extends Feature
 		*/
 		super(query);
 		parseQuery(query);
-	
-		
-		
 	}
 
 	@Override
