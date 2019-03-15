@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"CaseController"},{"p":"features","l":"ConverCurrency"},{"p":"features","l":"Feature"},{"p":"features","l":"FlipCoin"},{"p":"features","l":"GoogleImageSearch"},{"p":"features","l":"SongLyrics"},{"p":"features","l":"TopHitsSpotify"},{"p":"<Unnamed>","l":"UI"},{"p":"features","l":"Weather"}]

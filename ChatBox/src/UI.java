@@ -16,7 +16,9 @@ public class UI
         	System.out.println("    -To ask search for pictures Type: search image \"what you want to search\", \\\"number of images\\\"");
 			System.out.println("        Example: search image dogs, 5; this will return 5 different pictures of dogs");
 			System.out.println("    -To convert currency Type: convert \"amount,original currency,intended currency\" with spaces inbetween");
-			System.out.println("        Example: convert 10 USD to GBR; this will return the conversion of 10USD to EUR");
+			System.out.println("        Example: convert 10 USD to EUR; this will return the conversion of 10USD to EUR");
+			System.out.println("    -To convert currency Type: flip coin \"amount of times you want to flip\" times");
+			System.out.println("        Example: flip coin 10 times; this will return a heads/tail for 10 times");
             String query = scan.nextLine();
 
             if(query.toLowerCase().contains("bye"))
