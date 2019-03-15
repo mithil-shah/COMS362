@@ -17,8 +17,10 @@ public class UI
 			System.out.println("        Example: search image dogs, 5; this will return 5 different pictures of dogs");
 			System.out.println("    -To convert currency Type: convert \"amount,original currency,intended currency\" with spaces inbetween");
 			System.out.println("        Example: convert 10 USD to EUR; this will return the conversion of 10USD to EUR");
-			System.out.println("    -To convert currency Type: flip coin \"amount of times you want to flip\" times");
-			System.out.println("        Example: flip coin 10 times; this will return a heads/tail for 10 times");
+//			System.out.println("    -To convert currency Type: flip coin \"amount of times you want to flip\" times");
+//			System.out.println("        Example: flip coin 10 times; this will return a heads/tail for 10 times");
+			System.out.println("    -To get stocks info Type: get stocks info for \"stock symbol\"");
+			System.out.println("        Example: get stocks info for MSFT; returns stock details for MSFT");
             String query = scan.nextLine();
 
             if(query.toLowerCase().contains("bye"))

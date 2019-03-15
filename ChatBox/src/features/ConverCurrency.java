@@ -29,7 +29,6 @@ public class ConverCurrency extends Feature {
     }
 
 	protected void parseQuery(String query) {
-//		String nonKeywords = "find" + "song" + "lyrics" + "the" + "to" + "get" + "for";
 		String[] words = query.split(" ");
 		 curr1 = words[2];
 		 curr1 = curr1.toUpperCase();

@@ -7,3 +7,4 @@ top hits: TopHitsSpotify
 top songs: TopHitsSpotify
 convert: ConverCurrency
 flip: FlipCoin
+get stocks: GetStock
