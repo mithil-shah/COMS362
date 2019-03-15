@@ -59,7 +59,7 @@ public class SongLyrics extends Feature {
 					artist += words[j] + "-";
 				}
 				break;
-			}
+			} 
 		}
 
 		try {
