@@ -1,4 +1,5 @@
 package features;
+import configuration.Response;
 
 /**
  * 
@@ -30,7 +31,7 @@ public abstract class Feature
      * @return response
      * 		The response to the user's query by features.Class
      */
-    abstract public String setResponse();
+    abstract public Response setResponse();
     
     /**
      * This method handles the keywords that a specific features.Class might need as a parameter in order to provide a more detailed response

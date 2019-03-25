@@ -3,7 +3,10 @@
  */
 package features;
 
+import configuration.Response;
+
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -18,11 +21,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-public class ConverCurrency extends Feature {
+public class ConvertCurrency extends Feature {
 	private URL url;
 	String curr1,curr2;
 	int money;
-    public ConverCurrency(String query)
+    public ConvertCurrency(String query)
     {
         super(query);
         parseQuery(query);
@@ -49,7 +52,7 @@ public class ConverCurrency extends Feature {
 	    return (double) tmp / factor;
 	}
 	@Override
-	public String setResponse()
+	public Response setResponse()
 	{
 		String toReturn= "";
 		String [] code = {"AED","ALL","AMD","ANG","AOA","ARS","AUD","AZN","BBD","BDT","BGN","BHD","BRL","BSD","BWP","BYN","CAD","CHF","CLP","CNY",
@@ -59,11 +62,11 @@ public class ConverCurrency extends Feature {
 				"SEK","SGD","THB","TJS","TND","TRY","TTD","TWD","TZS","UAH","USD","UYU","UZS","VEF","VND","XAF","XCD","XOF","XPF","ZAR","ZMW"};
 		if(!useList(code,curr1)) {
 			toReturn = toReturn + "Invalid first currency";
-			return toReturn;
+			return new Response(toReturn);
 		}
 		if(!useList(code,curr2)) {
 			toReturn = toReturn + "Invalid second currency";
-			return toReturn;
+ 			return new Response(toReturn);
 		}
 
 		// Setting URL
@@ -105,8 +108,8 @@ public class ConverCurrency extends Feature {
 				double result = Double.parseDouble(rate);			
 				double convert = round(result*money,2) ;
 				String finalCurr = Double.toString(convert);
-				toReturn = toReturn + "Conversion from "+ money + " " +curr1 + " to " +curr2 +":" +finalCurr;
-				return toReturn;
+				toReturn = toReturn + "Conversion from "+ money + " " +curr1 + " to " +curr2 +": " +finalCurr;
+				return new Response(toReturn);
 	}
 	
 

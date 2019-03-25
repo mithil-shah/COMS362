@@ -2,6 +2,7 @@ package features;
 
 
 import java.io.IOException;
+import configuration.Response;
 import java.util.Scanner;
 
 import org.jsoup.Jsoup;
@@ -48,7 +49,7 @@ public class GoogleImageSearch extends Feature
 	 * 		List of search result URLs given from Google Search
 	 */
 	@Override
-	public String setResponse()
+	public Response setResponse()
 	{ //gets the google search URL using the query and number from constructor.
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+toSearch+"&num="+numLinksToReturn;
 		// A user agent must be used to get data
@@ -69,7 +70,7 @@ public class GoogleImageSearch extends Feature
 			toReturn= toReturn + "\n" + "Text::" + linkText + ", URL::" + linkHref.substring(6, linkHref.indexOf("&"));
 		}
 		
-		return toReturn;
+		return new Response(toReturn);
 	}
 
 	/**

@@ -1,3 +1,4 @@
+package configuration;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class CaseController
 	/**
 	 * Response provided to the user after query is processed. Null if it cannot be processed
 	 */
-    private String response;
+    private Response response;
 
     /**
      * 
@@ -61,7 +62,7 @@ public class CaseController
                 Constructor<?> cons = c.getConstructor(String.class);
                 Object object = cons.newInstance(query);
                 Method method = object.getClass().getMethod("setResponse");
-                response = (String) method.invoke(object);
+                response = (Response) method.invoke(object);
             }
         }
         
@@ -73,7 +74,7 @@ public class CaseController
      * 
      * @return the response to the user's query given by the visited feature.Class
      */
-    public String getResponse()
+    public Response getResponse()
     {
         return response;
     }

@@ -1,6 +1,7 @@
 package features;
 
 import java.io.IOException;
+import configuration.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -46,9 +47,9 @@ public class TopHitsSpotify extends Feature
 	 * 		Returns the top hits of the user's region given in the format of Rank (#). Song Name by Artist Name
 	 */
 	@Override
-	public String setResponse() 
+	public Response setResponse() 
 	{
-		return topHits;
+		return new Response(topHits);
 	}
 	
 	/**

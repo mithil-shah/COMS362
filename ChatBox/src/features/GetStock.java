@@ -3,6 +3,8 @@
  */
 package features;
 
+import configuration.Response;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,7 +48,7 @@ public class GetStock extends Feature {
 	    return (double) tmp / factor;
 	}
 	@Override
-	public String setResponse()
+	public Response setResponse()
 	{
 		String toReturn= "";
 //		String [] code = {"AED","ALL","AMD","ANG","AOA","ARS","AUD","AZN","BBD","BDT","BGN","BHD","BRL","BSD","BWP","BYN","CAD","CHF","CLP","CNY",
@@ -110,7 +112,7 @@ public class GetStock extends Feature {
 				toReturn = toReturn + " Stock Symbol: "+symbol+ "\n Open: "+open+ "\n High: "+high+ "\n Low: "+low
 						+ "\n Price: "+price+ "\n Volume: "+volume+ "\n Latest Trading Day: "+trading
 						+ "\n Previous Close: "+close+ "\n Change: "+change + "\n Change percent: "+changep;
-				return toReturn;
+				return new Response(toReturn);
 	}
 	
 

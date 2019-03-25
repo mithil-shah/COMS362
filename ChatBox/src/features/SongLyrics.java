@@ -1,6 +1,7 @@
 package features;
 
 import java.io.IOException;
+import configuration.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.examples.HtmlToPlainText;
 import org.jsoup.nodes.Document;
@@ -33,8 +34,8 @@ public class SongLyrics extends Feature {
 	 * 		The lyrics to the song
 	 */
 	@Override
-	public String setResponse() {
-		return response;
+	public Response setResponse() {
+		return new Response(response);
 	}
 
 	/**

@@ -1,47 +1,53 @@
 /**
- * @author Bernard Ang
+ * @author Bernard Ang & Mithil Shah
  */
 package features;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
+import configuration.Response;
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class FlipCoin extends Feature {
 	
-	int number;
+	int iterations = 1;
+	
     public FlipCoin(String query)
     {
         super(query);
         parseQuery(query);
     }
 
-	protected void parseQuery(String query) {
+	protected void parseQuery(String query)
+	{
 		String[] words = query.split(" ");
-		number = Integer.parseInt(words[2]);
 		
+		for(int i = 0; i < words.length; i++)
+		{
+			try
+			{
+				iterations = Integer.parseInt(words[i]);
+				break;
+			}
+			catch(ClassCastException | NumberFormatException e)
+			{
+				continue;
+			}
+		}
 	}
 
 	@Override
-	public String setResponse()
+	public Response setResponse()
 	{
-		String toReturn= "";
-		String [] arr = {"Heads","Tail"};
-		Random r = new Random();
-		int count = 0;
-		while(count < number) {
-		String random =  arr[r.nextInt(arr.length)];
-		count++;
-		toReturn = toReturn +"Attempt " + count +" : " + random + "\n";
-	}
-		return toReturn;
-
+		String toReturn = "";
+		Random rand = new Random(System.currentTimeMillis());
+		String [] possibilities = {"Heads", "Tails"};
+		
+		for(int i = 0; i < iterations; i++)
+		{
+			int random = rand.nextInt(2);
+			toReturn += "Attempt " + (i+1) + ": " + possibilities[random] + "\n";			
+		}
+		
+		return new Response(toReturn);
 	}
 }

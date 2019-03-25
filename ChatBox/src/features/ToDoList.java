@@ -9,6 +9,7 @@
  */
 package features;
 import java.io.*;
+import configuration.Response;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,8 +56,8 @@ public class ToDoList extends Feature  {
 	/**
 	 * Showing the final Response after being done with to-do list
 	 */
-	public String setResponse() {
-		return "Bye! Done with to-do list!";
+	public Response setResponse() {
+		return new Response("Bye! Done with to-do list!");
 		
 		
 	}

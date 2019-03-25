@@ -5,7 +5,7 @@ search image: GoogleImageSearch
 lyrics: SongLyrics
 top hits: TopHitsSpotify
 top songs: TopHitsSpotify
-convert: ConverCurrency
+convert: ConvertCurrency
 flip: FlipCoin
 get stocks: GetStock
 to-do: ToDoList

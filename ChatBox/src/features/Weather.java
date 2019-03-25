@@ -1,4 +1,5 @@
 package features;
+import configuration.Response;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -243,15 +244,16 @@ public class Weather extends Feature
      * @throws IOException
      * 		Thrown if the website cannot be reached.
      */
-    public String setResponse()
+    public Response setResponse()
     {
         try
         {
-            return parseWeatherResponseData(getForecast()) + " @ " + foundLocation;
+            String response = parseWeatherResponseData(getForecast()) + " @ " + foundLocation;
+            return new Response(response);
         }
         catch (IOException e)
         {
-            return "Error parsing weather";
+            return new Response("Error parsing weather");
         }
     }
 }

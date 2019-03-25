@@ -1,3 +1,4 @@
+package configuration;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public class UI
             //if the appropriate class can provide a response, print it
             if(cc.getResponse() != null)
             {
-                System.out.println(cc.getResponse());
+                cc.getResponse();
             }
             //else print friendly error message...
             else
