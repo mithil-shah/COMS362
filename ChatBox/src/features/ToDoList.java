@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 
 
-public class ToDoList extends Feature  {
+public class ToDoList implements Feature  {
 	
 	
 	/**
@@ -25,7 +25,6 @@ public class ToDoList extends Feature  {
 	 */
 	public ToDoList(String query)
 	{
-		super(query);
 		int option = options();
 		
 		while(option !=4) {
@@ -67,7 +66,7 @@ public class ToDoList extends Feature  {
 	/**
 	 * It's not needed since we didn't use it with respect to my to-do list
 	 */
-	protected void parseQuery(String query) 
+	public void parseQuery(String query) 
 	{
 		
 	}

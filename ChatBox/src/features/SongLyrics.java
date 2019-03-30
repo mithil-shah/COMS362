@@ -12,7 +12,7 @@ import org.jsoup.nodes.Element;
  * @author Shreya Shankar
  *
  */
-public class SongLyrics extends Feature {
+public class SongLyrics implements Feature {
 	/**
 	 * The lyrics to the song requested by the user
 	 */
@@ -23,14 +23,14 @@ public class SongLyrics extends Feature {
 	 * @param query
 	 * 		The query provided by the user
 	 */
-	public SongLyrics(String query) {
-		super(query);
+	public SongLyrics(String query) 
+	{
 		parseQuery(query);
 	}
 
 	/**
 	 * 
-	 * @return response
+	 * @return responses
 	 * 		The lyrics to the song
 	 */
 	@Override

@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
  * @author Shreya Shankar
  *
  */
-public class GoogleImageSearch extends Feature
+public class GoogleImageSearch implements Feature
 {   
 	/**
 	 * The string that needs to be searched for on Google
@@ -39,7 +39,6 @@ public class GoogleImageSearch extends Feature
 	*/
 	public GoogleImageSearch(String query)
 	{
-		super(query);
 		parseQuery(query);
 	}
 
@@ -81,7 +80,7 @@ public class GoogleImageSearch extends Feature
 	 * 		The search results found on Google from the search terms provided
 	 */
 	@Override
-	protected void parseQuery(String query) 
+	public void parseQuery(String query) 
 	{
 		query= query.replaceAll("\\s+", "");
 		String toInt="";

@@ -21,17 +21,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-public class ConvertCurrency extends Feature {
+public class ConvertCurrency implements Feature {
 	private URL url;
 	String curr1,curr2;
 	int money;
+	
     public ConvertCurrency(String query)
     {
-        super(query);
         parseQuery(query);
     }
 
-	protected void parseQuery(String query) {
+	public void parseQuery(String query) {
 		String[] words = query.split(" ");
 		 curr1 = words[2];
 		 curr1 = curr1.toUpperCase();

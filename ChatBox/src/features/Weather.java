@@ -15,7 +15,7 @@ import com.google.gson.*;
  *
  */
 
-public class Weather extends Feature
+public class Weather implements Feature
 {
 	/**
 	 * The URL of the weather API
@@ -34,7 +34,6 @@ public class Weather extends Feature
      */
     public Weather(String query)
     {
-        super(query);
         parseQuery(query);
     }
 
@@ -45,7 +44,7 @@ public class Weather extends Feature
      * @throws IOException
      * 		Thrown if the website cannot be reached (Error 404 code from HTML) or if the website cannot be read correctly
      */
-    protected void parseQuery(String query)
+    public void parseQuery(String query)
     {		
     	//These are words that are probably not the location that the user wants to find weather from
         String nonKeywords = "where" + "is" + "of" + "temp" + "weather" + "at" + "in" + "city" + "location" + "the" + "what" + "get" + "fetch";

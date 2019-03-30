@@ -9,3 +9,4 @@ convert: ConvertCurrency
 flip: FlipCoin
 get stocks: GetStock
 to-do: ToDoList
+translate: TranslateToEnglish

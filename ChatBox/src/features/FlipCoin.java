@@ -7,17 +7,16 @@ import configuration.Response;
 import java.util.Random;
 
 
-public class FlipCoin extends Feature {
+public class FlipCoin implements Feature {
 	
 	int iterations = 1;
 	
     public FlipCoin(String query)
     {
-        super(query);
         parseQuery(query);
     }
 
-	protected void parseQuery(String query)
+	public void parseQuery(String query)
 	{
 		String[] words = query.split(" ");
 		

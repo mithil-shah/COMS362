@@ -12,7 +12,7 @@ import org.jsoup.nodes.Element;
  *
  */
 
-public class TopHitsSpotify extends Feature
+public class TopHitsSpotify implements Feature
 {
 	/**
 	 * Holds the top 200 hits from, Spotify based off a user's region
@@ -28,9 +28,7 @@ public class TopHitsSpotify extends Feature
 	 * 		Thrown if HTML page cannot be returned (Error 404)
 	 */
 	public TopHitsSpotify(String query)
-	{
-		super(query);
-		
+	{		
 		//Call the parseHTML() method to get data regarding the top 200 songs from Spotify (regional)
 		try 
 		{
@@ -88,7 +86,7 @@ public class TopHitsSpotify extends Feature
 	 * 		The query provided by the user that does not need parsing for this scenario
 	 */
 	@Override
-	protected void parseQuery(String query)
+	public void parseQuery(String query)
 	{
 		
 	}

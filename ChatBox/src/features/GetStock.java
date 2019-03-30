@@ -20,17 +20,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-public class GetStock extends Feature {
+public class GetStock implements Feature {
 	private URL url;
 	String curr1,curr2;
 	int money;
     public GetStock(String query)
     {
-        super(query);
         parseQuery(query);
     }
 
-	protected void parseQuery(String query) {
+	public void parseQuery(String query) {
 		String[] words = query.split(" ");
 		 curr1 = words[4];
 		 curr1 = curr1.toUpperCase();
