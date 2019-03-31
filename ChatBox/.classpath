@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="/Users/mithilshah/git/COMS362/ChatBox/src/gson-2.8.5.jar"/>
 	<classpathentry kind="lib" path="/Users/mithilshah/git/COMS362/ChatBox/src/gtranslateapi-1.0.jar"/>
 	<classpathentry kind="lib" path="/Users/mithilshah/git/COMS362/ChatBox/src/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="src/twitter4j-core-4.0.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

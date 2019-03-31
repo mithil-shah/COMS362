@@ -12,30 +12,59 @@ import com.google.gson.JsonParser;
 
 import configuration.Response;
 
+/**
+ * Translates any word recognized by Google Translate into English
+ *
+ * @author Mithil Shah
+ *
+ */
 public class TranslateToEnglish implements Feature
 {
+	/**
+	 * Holds the translated English string and origin of the source language
+	 */
 	private String englishString;
 	
+	/**
+	 * Calls parseQuery() to parse query for "wordToTranslate"
+	 * 
+	 * @param query
+	 * 		The query provided by the user
+	 */
 	public TranslateToEnglish(String query) 
 	{
 		parseQuery(query);
 	}
 
+	/**
+	 * Returns the translated content in English to the user along with the origin of the source language
+	 * 
+	 * @return Response
+	 * 		The translated English string and origin of the source language
+	 */
 	@Override
 	public Response setResponse() 
 	{
 		return new Response(englishString);
 	}
 
+	/**
+	 * Gets the string to translate from the user's query
+	 * 
+	 * @param
+	 * 		The query provided by the user
+	 */
 	@Override
 	public void parseQuery(String query)
 	{
 		for(String word: query.split(" "))
 		{
+			 //If a string contains quotes
 			if(word.contains("\""))
 			{
 				try 
 				{
+					//Translate the word inside the quotes
 					getTranslation(word.substring(1, word.length()-1));
 				} 
 				catch (IOException e) 
@@ -48,8 +77,17 @@ public class TranslateToEnglish implements Feature
 		}
 	}
 	
+	/**
+	 * Get the translation of the source string and its origins
+	 * 
+	 * @param toTranslate
+	 * 		The string to translate into English
+	 * @throws IOException
+	 * 		Thrown if the API cannot handle the request properly 
+	 */
 	private void getTranslation(String toTranslate) throws IOException
 	{
+		//API call string
 		String completeURL = "https://translation.googleapis.com/language/translate/v2?q=" + toTranslate.trim() + "&target=en&key=AIzaSyA9RVTfYhPbrTEzTmy47K3vy4QQe-2Bp7Q";
 				
     	//Set up the URL connection and get data from it
@@ -82,6 +120,7 @@ public class TranslateToEnglish implements Feature
             JsonElement translatedText = info.getAsJsonObject().get("translatedText");
             JsonElement sourceLangAbbr = info.getAsJsonObject().get("detectedSourceLanguage");
             
+            //The API gives the country code as an abbreviation, so we need to convert this to the name of the country
             Locale loc = new Locale(sourceLangAbbr.getAsString());
             String sourceLangName = loc.getDisplayLanguage(loc);
             
