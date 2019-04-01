@@ -72,7 +72,7 @@ public class UnsplashSearch implements Feature
 	 * @param toSearch
 	 * 		The category of the image
 	 * @param numberOfPics
-	 * 		Niumber of images to return
+	 * 		Number of images to return
 	 * @throws IOException
 	 * 		Thrown if API cannot properly process the request
 	 */
