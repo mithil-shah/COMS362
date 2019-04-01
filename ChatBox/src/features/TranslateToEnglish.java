@@ -88,7 +88,7 @@ public class TranslateToEnglish implements Feature
 	private void getTranslation(String toTranslate) throws IOException
 	{
 		//API call string
-		String completeURL = "https://translation.googleapis.com/language/translate/v2?q=" + toTranslate.trim() + "&target=en&key=AIzaSyA9RVTfYhPbrTEzTmy47K3vy4QQe-2Bp7Q";
+	    String completeURL = "https://translation.googleapis.com/language/translate/v2?q=" + toTranslate.trim() + "&target=en&key=AIzaSyA9RVTfYhPbrTEzTmy47K3vy4QQe-2Bp7Q";
 				
     	//Set up the URL connection and get data from it
 		URL url = new URL(completeURL);
