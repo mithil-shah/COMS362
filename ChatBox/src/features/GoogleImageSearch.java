@@ -28,7 +28,7 @@ public class GoogleImageSearch implements Feature
 	/**
 	 * Number of links to return, specified by the user
 	 */
-	int numLinksToReturn=0;
+	int numLinksToReturn=0; 
 
 	/**This will get the query which is what the user wants to search and the number of top 
 	 * results that the user wants returned and then assign each of them to the corresponding

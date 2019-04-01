@@ -1,6 +1,6 @@
 temp: Weather
 weather: Weather
-search image: GoogleImageSearch
+search image: UnsplashSearch
 lyrics: SongLyrics
 top hits: TopHitsSpotify
 top songs: TopHitsSpotify
@@ -10,3 +10,5 @@ get stocks: GetStock
 to-do: ToDoList
 translat: TranslateToEnglish
 trend: TopTrendingTwitter
+news: TopNewsHeadlines
+headline: TopNewsHeadlines
