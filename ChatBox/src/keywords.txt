@@ -12,3 +12,4 @@ translat: TranslateToEnglish
 trend: TopTrendingTwitter
 news: TopNewsHeadlines
 headline: TopNewsHeadlines
+play hangman: Hangman

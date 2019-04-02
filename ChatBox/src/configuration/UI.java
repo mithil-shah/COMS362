@@ -70,6 +70,7 @@ public class UI
     			System.out.println("        Example: search image dogs, 5; this will return 5 different pictures of dogs");
     			System.out.println("    -To convert currency Type: convert \"amount,original currency,intended currency\" with spaces inbetween");
     			System.out.println("        Example: convert 10 USD to GBP; this will return the conversion of 10USD to GBP");
+    			System.out.println("    -To play a hangman game Type: play hangman. This will begin a regular Hangman game");
     			
     			//Since the ChatBox has now ran, make isInitialQuery false.
     			isInitialQuery = false;
