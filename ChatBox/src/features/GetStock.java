@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Scanner;
+
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
@@ -22,8 +22,7 @@ import com.google.gson.JsonSyntaxException;
 
 public class GetStock implements Feature {
 	private URL url;
-	String curr1,curr2;
-	int money;
+	String curr1;
     public GetStock(String query)
     {
         parseQuery(query);
@@ -38,14 +37,7 @@ public class GetStock implements Feature {
 	public static boolean useList(String[] arr, String targetValue) {
 		return Arrays.asList(arr).contains(targetValue);
 	}
-	public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-
-	    long factor = (long) Math.pow(10, places);
-	    value = value * factor;
-	    long tmp = Math.round(value);
-	    return (double) tmp / factor;
-	}
+	
 	@Override
 	public Response setResponse()
 	{

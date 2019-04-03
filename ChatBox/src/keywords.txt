@@ -12,4 +12,5 @@ translat: TranslateToEnglish
 trend: TopTrendingTwitter
 news: TopNewsHeadlines
 headline: TopNewsHeadlines
+define : Definition
 play hangman: Hangman
