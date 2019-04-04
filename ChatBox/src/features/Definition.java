@@ -1,4 +1,5 @@
 /**
+ * Returns the definition of a word
  * @author Bernard Ang
  */
 package features;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import com.google.gson.JsonArray;
@@ -59,19 +61,42 @@ public class Definition implements Feature {
 		final String app_id = "f3fcf45c";
 		final String app_key = "a884fde5a290e522101e6ac435e3ac52";
 		
-		try {
+		
 			//Making the Request
-			URL url = new URL (url_str);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			URL url = null;
+			try {
+				url = new URL (url_str);
+			} catch (MalformedURLException e) {
+				
+				e.printStackTrace();
+			}
+			HttpURLConnection connection = null;
+			try {
+				connection = (HttpURLConnection) url.openConnection();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 			//Setting the properties for the request
 			connection.setRequestProperty("Accept","application/json");
 			connection.setRequestProperty("app_id",app_id);
 			connection.setRequestProperty("app_key",app_key);
-			connection.setRequestMethod("GET");
+			try {
+				connection.setRequestMethod("GET");
+			} catch (ProtocolException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			connection.setDoOutput(true);
 			// Convert to JSON
 			JsonParser jp = new JsonParser();
-			JsonElement	root = jp.parse(new InputStreamReader((InputStream) connection.getContent()));
+			JsonElement root = null;
+			try {
+				root = jp.parse(new InputStreamReader((InputStream) connection.getContent()));
+			} catch (JsonIOException | JsonSyntaxException | IOException e) {
+			
+				e.printStackTrace();
+			}
 			//Parsing the Large JSON file acquired
 			JsonObject jsonobj = root.getAsJsonObject();
 			JsonArray jsonarr = jsonobj.getAsJsonArray("results");
@@ -85,10 +110,7 @@ public class Definition implements Feature {
 			JsonArray jsonarr5 = jsonobj5.getAsJsonArray("definitions");
 			//Assigning the json element to results
 		     results = jsonarr5.get(0).toString();
-		}catch(Exception e) {
-			e.printStackTrace();
-
-		}
+		
 			//Returning the response
 		return new Response(results);
 	}

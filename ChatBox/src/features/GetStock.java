@@ -60,20 +60,20 @@ public class GetStock implements Feature {
 		try {
 			url = new URL(url_str);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 		HttpURLConnection request = null;
 		try {
 			request = (HttpURLConnection) url.openConnection();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		try {
 			request.connect();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

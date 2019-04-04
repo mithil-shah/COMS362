@@ -56,7 +56,8 @@ public class Hangman implements Feature{
 					System.out.println("Bad guess. You lose");
 					end = true;
 				}
-			}else if(response.equals("char")) {
+			}//Deals with the char action
+			else if(response.equals("char")) {
 				System.out.println("Please type a character");
 				System.out.println();
 				char cguess = input.nextLine().charAt(0);
@@ -73,7 +74,8 @@ public class Hangman implements Feature{
 					System.out.println("The current Hangman picture is");
 					printHangman(chances);
 				}
-			}else {
+			}//Handles wrong keyword
+			else {
 				System.out.println("PLEASE KEY IN EITHER WORD OR CHAR");
 			}
 			
