@@ -33,7 +33,7 @@ public class Measurement implements Feature  {
 	 * a constructor that calls the helper functions to show the options of conversion 
 	 * @param query
 	 */
-	public measurement(String query)
+	public Measurement(String query)
 	{
 		int option = options();
 		
