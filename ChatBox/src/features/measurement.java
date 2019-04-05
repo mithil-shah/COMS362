@@ -1,17 +1,19 @@
 
 
 package features;
+
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import configuration.Response;
 
 /**
- * 
+ *  a class to convert the measurement such as weight, length and temperature
  * @author fadelalshammasi
  *
  */
 
-public class measurement implements Feature  {
+public class Measurement implements Feature  {
 	
 	private static final double FROM_POUNDS_TO_KG=0.453592;
 	private static final double FROM_KG_TO_POUNDS=2.20462;
@@ -21,11 +23,16 @@ public class measurement implements Feature  {
 	private static final double FT_TO_M=0.3048;
 	private double length;
 
+	
+
 	private double temperature;
 
 	
 	
-	
+	/**
+	 * a constructor that calls the helper functions to show the options of conversion 
+	 * @param query
+	 */
 	public measurement(String query)
 	{
 		int option = options();
@@ -52,6 +59,9 @@ public class measurement implements Feature  {
 		parseQuery(query);
 	}
 
+	/**
+	 *  Convert from  Fahrenheit to Celsius or(and) from  Celsius to Fahrenheit
+	 */
 	private void temperature() {
 		Scanner scan=new Scanner(System.in);
 		//PrintWriter pw=new PrintWriter(fw);
@@ -75,6 +85,9 @@ public class measurement implements Feature  {
 	}
 
 
+	/**
+	 *  Convert from  meters to feet or(and) from  feet to meters
+	 */
 	private void length() {
 		
 		Scanner scan=new Scanner(System.in);
@@ -99,6 +112,9 @@ public class measurement implements Feature  {
 		
 	}
 
+	/**
+	 * Convert from  pounds to kg or(and) from  kg to pounds
+	 */
 	private void weight() {
 		Scanner scan=new Scanner(System.in);
 		//PrintWriter pw=new PrintWriter(fw);
@@ -122,11 +138,11 @@ public class measurement implements Feature  {
 		
 	}
 
-	private void displayList() {
-		// TODO Auto-generated method stub
-		
-	}
 
+	/**
+	 * A method to display all of the options that the user can choose from 
+	 * @return the choice that the user entered
+	 */
 	private int options() {
 		Scanner scan=new Scanner(System.in);
 		System.out.println("\n Options to choose from \n");
