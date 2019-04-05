@@ -1,4 +1,5 @@
 package features;
+
 import javax.swing.JPanel;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -20,6 +21,8 @@ import java.awt.Container;
 /**
  * 
  * @author fadelalshammasi
+ * 
+ *  a class that displays a calculator to do some numerical calculations 
  *
  */
 public class Calculator implements Feature , ActionListener {
@@ -32,7 +35,9 @@ public class Calculator implements Feature , ActionListener {
 	protected JTextField calculator;
 
 	 
-	
+	/**
+	 * setting the result 
+	 */
 	@Override
 	public Response setResponse() {
 		run();
@@ -40,12 +45,17 @@ public class Calculator implements Feature , ActionListener {
 	}
 
 	@Override
+	/**
+	 * It's not needed since we didn't use it in this calculator 
+	 */
 	public void parseQuery(String query) {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	
+	/**
+	 * a constructor that sets the frame (buttons, etc)
+	 * @param query
+	 */
 	public Calculator(String query){
 	  gui = new JFrame();
 	  gui.setTitle("Calculator");
@@ -79,6 +89,7 @@ public class Calculator implements Feature , ActionListener {
 	  equal.setActionCommand("=");
 	  equal.addActionListener(new ActionListener()
 	  {
+		  
 	      public void actionPerformed(ActionEvent event) {
 	         
 	              int number = Integer.parseInt(calculator.getText()); 
@@ -150,6 +161,11 @@ public class Calculator implements Feature , ActionListener {
 	  parseQuery(query);
 	}
 
+	/**
+	 * adding the buttons into the frame
+	 * @param parent
+	 * @param str
+	 */
 	private void addNumberButton(Container parent, String str)
 	{
 	  JButton butttom = new JButton(str);
@@ -157,7 +173,11 @@ public class Calculator implements Feature , ActionListener {
 	  butttom.addActionListener(this);
 	  parent.add(butttom);
 	}
-	 
+	 /**
+	  * helper function to convert decimal to hexdecimal
+	  * @param decimal
+	  * @return hex
+	  */
 	private String toHex(int decimal){    
 	    int reminder;  
 	    String hex="";   
@@ -171,7 +191,12 @@ public class Calculator implements Feature , ActionListener {
 	   return hex;  
 	}   
 
-
+/**
+ * performing the action when the button is pressed
+ * @param parent
+ * @param action
+ * @param text
+ */
 	private void addActionButton(Container parent, int action, String text)
 	{
 	  JButton but = new JButton(text);
@@ -188,15 +213,28 @@ public class Calculator implements Feature , ActionListener {
 	  calculator.setText(action);       
 	}
 	 
+	/**
+	 *  a class to execute the meaning of the operators
+	 * @author fadelalshammasi
+	 *
+	 */
 	private class OperatorAction implements ActionListener
 	{
 	  private int operator;
 	 
+	  /**
+	   * Constructor for this class
+	   * @param operation
+	   */
 	  public OperatorAction(int operation)
 	  {
 	      operator = operation;
 	  }
 	 
+	  
+	  /**
+	   * action performed by a specific operator 
+	   */
 	  public void actionPerformed(ActionEvent event)
 	  {
 		  result = Integer.parseInt(calculator.getText()); 
