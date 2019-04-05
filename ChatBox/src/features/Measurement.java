@@ -82,6 +82,8 @@ public class Measurement implements Feature  {
 			double num1=scan.nextDouble();
 			temperature=(num1 * 9.0/5)+32;
 		}
+		System.out.println("The Temperature is: "+ temperature);
+
 	}
 
 
@@ -91,13 +93,10 @@ public class Measurement implements Feature  {
 	private void length() {
 		
 		Scanner scan=new Scanner(System.in);
-		//PrintWriter pw=new PrintWriter(fw);
 		
 		System.out.println("1. Convert from meters to feet  : ");
 		System.out.println("2. Convert from feet to meter : ");
 		int num=scan.nextInt();
-		//System.out.println();
-		//System.out.print("Please select an option: ");
 		
 		if(num==1) {
 		 System.out.print("Enter the height : ");
@@ -109,7 +108,8 @@ public class Measurement implements Feature  {
 			double num1=scan.nextDouble();
 			length=FT_TO_M * num1;
 		}
-		
+			System.out.println("The length is: "+length);
+
 	}
 
 	/**
@@ -135,7 +135,8 @@ public class Measurement implements Feature  {
 			double num1=scan.nextDouble();
 			weight=FROM_KG_TO_POUNDS * num1;
 		}
-		
+			System.out.println("The weight is: "+weight);
+
 	}
 
 
