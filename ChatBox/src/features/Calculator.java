@@ -1,5 +1,4 @@
 package features;
-
 import javax.swing.JPanel;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
