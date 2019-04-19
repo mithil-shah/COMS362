@@ -16,3 +16,4 @@ define : Definition
 play hangman: Hangman
 measure: measurement
 calculate: Calculator
+chat: Chat
