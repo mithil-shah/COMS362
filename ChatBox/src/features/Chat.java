@@ -51,14 +51,15 @@ public class Chat implements Feature
 	
 	public void selectUsers(BufferedReader br) throws IOException
 	{
-		System.out.println("Enter the port numbers of the users you would like to talk to seperated by a space.");
-		String[] ports = br.readLine().split(" ");
+		System.out.println("Enter the 'IP Address-port' of the users you would like to talk to. Each user should be seperated by a space.");
+		String[] users = br.readLine().split(" ");
 		
-		for(String port : ports)
+		for(String user : users)
 		{
 			try
 			{
-				Socket socket = new Socket("localhost", Integer.valueOf(port.trim()));
+				String [] userData = user.split("-");
+				Socket socket = new Socket(userData[0].trim(), Integer.valueOf(userData[1].trim()));
 				new PeerThread(socket).start();
 			}
 			catch(NumberFormatException nfe)
