@@ -17,3 +17,9 @@ play hangman: Hangman
 measure: measurement
 calculate: Calculator
 chat: Chat
+NCAAF: SportsEvents
+NFL: SportsEvents
+MLB: SportsEvents
+NBA: SportsEvents
+NCAAB: SportsEvents
+NHL: SportsEvents
