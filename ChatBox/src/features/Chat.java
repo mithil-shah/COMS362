@@ -8,11 +8,27 @@ import java.net.Socket;
 import configuration.Response;
 import features.Feature;
 import features.Messenger.*;
-
+/**
+ * Chat with a person over IP
+ * 
+ * @author Mithil Shah & Bernard Ang
+ *
+ */
 public class Chat implements Feature
 {
+	/**
+	 * The name of the user
+	 */
 	private String username;
 	 
+	/**
+	 * Constructs a new Chat 
+	 * 
+	 * @param query
+	 * 		The query given by the user
+	 * @throws IOException
+	 * 		IOException is thrown if the user does not enter correct parameters for a name and port number.
+	 */
 	public Chat(String query) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,7 +53,7 @@ public class Chat implements Feature
 		try 
 		{
 			int port = Integer.valueOf(br.readLine().trim());
-			ServerThread st = new ServerThread(port);
+			ServerThreadHandler st = new ServerThreadHandler(port);
 			st.start();
 			selectUsers(br);
 			message(br, username, st);
@@ -48,7 +64,14 @@ public class Chat implements Feature
 		}
 		
 	}
-	
+	/**
+	 * Input the IP Address of the users you want to talk to.
+	 * 
+	 * @param br
+	 * 		BufferedReader that takes care of user input
+	 * @throws IOException
+	 * 		Thrown if Sockets cannot be made using the IP Addresses and ports provided
+	 */
 	public void selectUsers(BufferedReader br) throws IOException
 	{
 		System.out.println("Enter the 'IP Address-port' of the users you would like to talk to. Each user should be seperated by a space.");
@@ -70,7 +93,19 @@ public class Chat implements Feature
 		}
 	}
 	
-	public void message(BufferedReader br, String username, ServerThread st) throws IOException
+	/**
+	 * Parses the message sent by the user and retrieved by the user.
+	 * 
+	 * @param br
+	 * 		The BufferedReader takes care of parsing input/output
+	 * @param username
+	 * 		The name of the user
+	 * @param st
+	 * 		The thread that sends the message to the other users.
+	 * @throws IOException
+	 * 		Thrown if the message cannot be parsed and sent
+	 */
+	public void message(BufferedReader br, String username, ServerThreadHandler st) throws IOException
 	{
 		System.out.println("You are now in the chat.");
 		
@@ -93,12 +128,20 @@ public class Chat implements Feature
 		}
 	}
 	
+	/**
+	 * The response given when the user leaves the chat
+	 */
 	@Override
 	public Response setResponse() 
 	{
 		return new Response("You have left the chat.");
 	}
 
+	/**
+	 * The query is parsed here.
+	 * @param query
+	 * 		The query sent by the user
+	 */
 	@Override
 	public void parseQuery(String query)
 	{

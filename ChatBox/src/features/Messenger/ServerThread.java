@@ -1,49 +1,68 @@
 package features.Messenger;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class ServerThread extends Thread
 {
-	private ServerSocket serverSocket;
-	private Set<ServerThreadThread> serverThreadThreads = new HashSet<ServerThreadThread>();
+	/**
+	 * An instance of the ServerThreadHandler
+	 */
+	private ServerThreadHandler st;
+	/**
+	 *  An instance of a Socket
+	 */
+	private Socket socket;
+	/**
+	 * An instance of a PrintWriter
+	 */
+	private PrintWriter pw;
 	
-	public ServerThread(int port) throws IOException
+	/**
+	 * Constructs a ServerThread from a socekt and its assigned handler
+	 * @param socket
+	 * 		The socket made in the Chat
+	 * @param st
+	 * 		The ServerThreadHandler made in Chat
+	 */
+	public ServerThread(Socket socket, ServerThreadHandler st)
 	{
-		serverSocket = new ServerSocket(port);
+		this.socket = socket;
+		this.st = st;
 	}
 	
+	/**
+	 * Returns the PrintWriter
+	 * @return pw
+	 * 		The PrintWriter
+	 */
+	public PrintWriter getPrintWriter()
+	{
+		return pw;
+	}
+	
+	/**
+	 * Sends the message then removes the thread containing that message from the ServerThreads.
+	 */
 	@Override
 	public void run()
 	{
-		while(true)
+		try 
 		{
-			try 
-			{
-				ServerThreadThread stt = new ServerThreadThread(serverSocket.accept(), this);
-				serverThreadThreads.add(stt);
-				stt.start();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			pw = new PrintWriter(socket.getOutputStream(), true);
 			
-		}
-	}
-	
-	public void sendMessage(String message)
-	{
-		for(ServerThreadThread stt : serverThreadThreads)
+			while(true)
+			{
+				st.sendMessage(br.readLine());
+			}
+		} 
+		catch (IOException e) 
 		{
-			stt.getPrintWriter().println(message);
+			st.getServerThreads().remove(this);
 		}
-	}
-	
-	public Set<ServerThreadThread> getServerThreadThreads()
-	{
-		return serverThreadThreads;
 	}
 }
