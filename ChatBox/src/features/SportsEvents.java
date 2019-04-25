@@ -19,7 +19,7 @@ import configuration.Response;
 
 public class SportsEvents implements Feature
 {
-	private String events = "";
+	private String response = "";
 	
 	public SportsEvents(String query)
 	{
@@ -29,7 +29,7 @@ public class SportsEvents implements Feature
 	@Override
 	public Response setResponse()
 	{
-		return new Response(events);
+		return new Response(response);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class SportsEvents implements Feature
 		
 		try
 		{
-			getEvents(sportIDs);
+			getEventsForSports(sportIDs);
 		}
 		catch (IOException e)
 		{
@@ -60,7 +60,7 @@ public class SportsEvents implements Feature
 		}
 	}
 	
-	private void getEvents(ArrayList<Integer> sportIDs) throws IOException
+	private void getEventsForSports(ArrayList<Integer> sportIDs) throws IOException
 	{
 		for(int id: sportIDs)
 		{
@@ -125,8 +125,8 @@ public class SportsEvents implements Feature
 			String team2 = teams.get(1).getAsJsonObject().get("name").getAsString();
 		
 			//Format (example) = 04/22/2019: Philadelphia Phillies vs. New York Mets @ 23:10:00 UTC
-			this.events += (date + ": " + team1 + " vs. " + team2 + " @ " + timeFound.substring(0, timeFound.length()-1) + " UTC") + "\n";
+			this.response += (date + ": " + team1 + " vs. " + team2 + " @ " + timeFound.substring(0, timeFound.length()-1) + " UTC") + "\n";
 		}
-		this.events += "\n";
+		this.response += "\n";
 	}
 }
