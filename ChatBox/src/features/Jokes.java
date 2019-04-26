@@ -1,3 +1,8 @@
+
+/**
+ * Returns a list of joke on a topic
+ * @author Bernard Ang
+ */
 package features;
 
 import java.io.BufferedReader;
@@ -25,11 +30,23 @@ public class Jokes implements Feature
 {
 	String keyword= " ";
 	String num = "";
+	/**
+	 * Constructs a new Definition object
+	 * 
+	 * @param query
+	 * 		The query specified by the user
+	 */
+	
 	public Jokes(String query)
 	{
 		parseQuery(query);
 	}
 	
+	/**
+	 * Parses the word and number given by the user 
+	 * @param query
+	 * 	 The query specified by the user
+	 */
 	@Override
 	public void parseQuery(String query)
 	{
@@ -40,10 +57,10 @@ public class Jokes implements Feature
 	
 
 	/**
-	 * Returns the definition of the word given by the user
+	 * Returns a list of jokes on the topic of the word given by the user
 	 * 
 	 * @return Response
-	 * 		The definition of the word given by the user
+	 * 		A list of jokes
 	 * 
 	 */
 	@Override
@@ -59,7 +76,7 @@ public class Jokes implements Feature
 			e.printStackTrace();
 		}
 
-		// Go to the URL specified above (TheRundown API)
+		// Go to the URL specified above (Jokes API)
 		HttpURLConnection connection = null;
 		try {
 			connection = (HttpURLConnection) url.openConnection();
@@ -85,7 +102,7 @@ public class Jokes implements Feature
 				e.printStackTrace();
 			}
 			JsonArray jsonarr = root.getAsJsonArray();
-			
+			//Assigning elements to toRetrun
 			for( int i = 0; i < jsonarr.size();i++) {
 			JsonObject jsonobj = (JsonObject) jsonarr.get(i);
 			JsonElement jokes = jsonobj.get("joke");
