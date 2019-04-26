@@ -71,7 +71,7 @@ public class UI
     			System.out.println("    -To convert currency Type: convert \"amount,original currency,intended currency\" with spaces inbetween");
     			System.out.println("        Example: convert 10 USD to GBP; this will return the conversion of 10USD to GBP");
     			System.out.println("    -To play a hangman game Type: play hangman. This will begin a regular Hangman game");
-    			
+    			System.out.println("    -To get jokes Type: Tell me 5 jokes of humans. This will list out 5 jokes with the key word humans");
     			//Since the ChatBox has now ran, make isInitialQuery false.
     			isInitialQuery = false;
         	}

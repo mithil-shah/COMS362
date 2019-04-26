@@ -24,3 +24,4 @@ NBA: SportsEvents
 NCAAB: SportsEvents
 NHL: SportsEvents
 dict: WordInformation
+joke: Jokes
