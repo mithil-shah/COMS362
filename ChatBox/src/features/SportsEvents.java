@@ -16,22 +16,47 @@ import com.google.gson.JsonParser;
 
 
 import configuration.Response;
-
+/**
+ * 
+ * @author Mithil Shah
+ *
+ */
 public class SportsEvents implements Feature
 {
+	/**
+	 * Sports events for chosen sports
+	 */
 	private String response = "";
 	
+	/**
+	 * Constructs a new instance of SportsEvents
+	 * 
+	 * @param query
+	 * 		The query provided by the user
+	 */
 	public SportsEvents(String query)
 	{
 		parseQuery(query);
 	}
 	
+	/**
+	 * Returns the events found by The Rundown API
+	 * 
+	 * @return response
+	 * 		Sports events for chosen sports
+	 */
 	@Override
 	public Response setResponse()
 	{
 		return new Response(response);
 	}
 
+	/**
+	 * Parses the query for the sports selected by the user and converts them to the API's sport ID
+	 * 
+	 * @param query
+	 * 		The query provided by the user
+	 */
 	@Override
 	public void parseQuery(String query)
 	{
@@ -60,6 +85,14 @@ public class SportsEvents implements Feature
 		}
 	}
 	
+	/**
+	 * Fetches the current sports events for the given list of sports
+	 * 
+	 * @param sportIDs
+	 * 		The specific sporting events to look for
+	 * @throws IOException
+	 * 		Thrown if API is unable to return the information properly or if HTTP error occurs. 
+	 */
 	private void getEventsForSports(ArrayList<Integer> sportIDs) throws IOException
 	{
 		for(int id: sportIDs)
@@ -96,6 +129,14 @@ public class SportsEvents implements Feature
 		}
 	}
 	
+	/**
+	 * Parses the JSON file for events, event dates/times, and teams participating in each of these events. 
+	 * 
+	 * @param response
+	 * 		The JSON file produced from the getEventsForSports() method
+	 * @throws ParseException
+	 * 		Thrown if the JSON file is unable to be properly parsed
+	 */
 	private void parseJSONResponse(String response) throws ParseException 
 	{
 		// Creates a JSON element from the provided JSON string from News API
